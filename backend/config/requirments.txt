@@ -4,3 +4,9 @@ fastapi
 pydantic
 bson
 pymongo
+
+
+
+
+run server
+uvicorn main:app --reload
