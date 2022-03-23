@@ -1,0 +1,6 @@
+pip install:
+uvicorn
+fastapi
+pydantic
+bson
+pymongo
