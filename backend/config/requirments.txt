@@ -10,3 +10,11 @@ pymongo
 
 run server
 uvicorn main:app --reload
+
+
+
+For React
+
+npm install bootstrap
+npm install react-bootstrap
+npm install react-router-dom
