@@ -13,3 +13,5 @@ db = client.Chasy
 
 #Declare databases
 chasy_collection = db["Chasy"]
+users_collection = db["users"]
+tasks_collection = db["tasks"]
