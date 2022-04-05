@@ -13,10 +13,12 @@ import Login from './components/Login';
 import NewTask from './components/NewTask';
 import AllTasks from './components/AllTasks';
 import Day from './components/Day';
+import NavbarComp from './components/NavbarComp';
 
 function App() {
   return (
     <Router>
+      <NavbarComp/>
     <div className = "container">
       <h1>Chasy</h1>
       <Routes>
@@ -24,7 +26,7 @@ function App() {
         <Route path = "/newtask" element={<NewTask/>}></Route>
         <Route path = "/login" element={<Login/>}></Route>
         <Route path = "/alltasks" element={<AllTasks/>}></Route>
-        <Route path = "/day" element={<Day/>}></Route>
+        <Route path = "/day/:day" element={<Day/>}></Route>
       </Routes>
     </div>
     </Router>
