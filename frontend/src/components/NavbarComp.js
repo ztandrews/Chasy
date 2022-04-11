@@ -1,33 +1,51 @@
 import React, { Component } from 'react'
-import { Navbar, Nav,  Container, Button } from 'react-bootstrap'
+import { Navbar, Nav, Container, Button, NavDropdown, Dropdown, DropdownButton } from 'react-bootstrap'
+import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
 import {
     Link
 } from "react-router-dom";
 
 export default class NavbarComp extends Component {
+
+
     render() {
+        const logout = () => {
+            localStorage.setItem('user_id','');
+    }
         return (
-                <div>
-                    <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
-                        <Container>
-                            <Navbar.Brand><h3 className='blue'>BetShare</h3></Navbar.Brand>
-                            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                            <Navbar.Collapse id="responsive-navbar-nav">
-                                <Nav className="me-auto">
-                                </Nav>
-                                <Nav>
-                                    <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
-                                    <Nav.Link as={Link} to={"/newtask"}>Add Task</Nav.Link>
-                                    <Nav.Link as={Link} to={"/alltasks"}>All Tasks</Nav.Link>
-                                    <Nav.Link as={Link} to={"/day"}>Day</Nav.Link>
-                                    
-                                    <button className='btn btn-sccuess'>Logout</button>
-                                </Nav>
-                            </Navbar.Collapse>
-                        </Container>
-                    </Navbar>
-                </div>
-            
+            <div>
+                <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
+                    <Container>
+                        <Navbar.Brand><h3 className='blue'>Chasy</h3></Navbar.Brand>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Collapse id="responsive-navbar-nav">
+                            <Nav className="me-auto">
+                            </Nav>
+                            <Nav>
+                                <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
+                                <Nav.Link as={Link} to={"/newtask"}>Add Task</Nav.Link>
+                                <Nav.Link as={Link} to={"/alltasks"}>All Tasks</Nav.Link>
+                                <Dropdown id="dropdown-basic-button" title="Day">
+                                    <Dropdown.Toggle>
+                                        Day
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                    <Dropdown.Item as={Link} to={"/sunday"}>Sunday</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={"/monday"}>Monday</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={"/tuesday"}>Tuesday</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={"/wednesday"}>Wednesday</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={"/thursday"}>Thursday</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={"/friday"}>Friday</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={"/saturday"}>Saturday</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                <Nav.Link as={Link} to={"/login"} onClick={logout()}>Logout</Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </div>
+
 
         )
     }

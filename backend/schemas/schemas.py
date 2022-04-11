@@ -8,7 +8,8 @@ def user_serializer(user) -> dict:
         "last_name":user["last_name"],
         "email":user["email"],
         "password":user["password"],
-        "free_time":user["free_time"]
+        "free_time":user["free_time"],
+        "username":user["username"]
     }
 
 def users_serializer(users) -> list:

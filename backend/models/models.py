@@ -23,6 +23,7 @@ class User(BaseModel):
     email: str
     password: str
     free_time: float
+    username: str
 
 class Task(BaseModel):
     _id: ObjectId
