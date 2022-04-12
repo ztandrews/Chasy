@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
+import NavbarComp from '../NavbarComp';
 
 export default class Thursday extends Component {
 
@@ -10,7 +11,9 @@ export default class Thursday extends Component {
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:8000/tasks/6245a8ef771854deae0a3c37/thursday`).then(res => {
+        const user = localStorage.getItem('user_id')
+        console.log(user)
+        axios.get(`http://localhost:8000/tasks/${user}/thursday`).then(res => {
             const tasks = res.data.data;
             console.log(tasks);
             this.setState({tasks: tasks});
@@ -19,6 +22,8 @@ export default class Thursday extends Component {
 
     render() {
         return (
+            <div>
+                <NavbarComp/>
             <div className = "container">
                 <h1 className='page-header'>Tasks for Thursday</h1>
                 {
@@ -34,6 +39,7 @@ export default class Thursday extends Component {
                         );
                     })
                 }
+            </div>
             </div>
         )
     }

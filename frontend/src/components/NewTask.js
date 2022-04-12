@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
+import NavbarComp from './NavbarComp'
+
+
 export default class NewTask extends Component {
     render() {
         return (
+            <div>
+                <NavbarComp/>
             <div className = "container">
                 <ho>Please fill the information below to add NewTask.</ho>
                 <h1>Title</h1>
@@ -40,6 +45,7 @@ export default class NewTask extends Component {
                     <br></br>
                     <button type = "submit" className='btn btn-primary'> Add </button>
                 </form>    
+            </div>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-
+import NavbarComp from '../NavbarComp';
 export default class Monday extends Component {
 
 
@@ -21,6 +21,8 @@ export default class Monday extends Component {
 
     render() {
         return (
+            <div>
+                <NavbarComp/>
             <div className = "container">
                 <h1 className='page-header'>Tasks for Monday</h1>
                 {
@@ -36,6 +38,7 @@ export default class Monday extends Component {
                         );
                     })
                 }
+            </div>
             </div>
         )
     }

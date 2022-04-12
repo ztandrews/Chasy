@@ -25,10 +25,9 @@ import RegisterForm from './components/RegisterForm';
 function App() {
   return (
     <Router>
-      <NavbarComp/>
-    <div className = "container">
+    <div>
       <Routes>
-        <Route path = "/" element={<Home/>}></Route>
+        <Route path = "/" element={<LoginForm/>}></Route>
         <Route path = "/newtask" element={<NewTask/>}></Route>
         <Route path = "/alltasks" element={<AllTasks/>}></Route>
         <Route path = "/monday" element={<Monday/>}></Route>
@@ -38,7 +37,6 @@ function App() {
         <Route path = "/friday" element={<Friday/>}></Route>
         <Route path = "/saturday" element={<Saturday/>}></Route>
         <Route path = "/sunday" element={<Sunday/>}></Route>
-        <Route path = "/login" element={<LoginForm/>}></Route>
         <Route path = "/register" element={<RegisterForm/>}></Route>
       </Routes>
     </div>

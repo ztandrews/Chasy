@@ -5,10 +5,11 @@ import {
     Link
 } from "react-router-dom";
 
-export default class NavbarComp extends Component {
+export default class Navbar2 extends Component {
 
 
     render() {
+      
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
@@ -19,7 +20,7 @@ export default class NavbarComp extends Component {
                             <Nav className="me-auto">
                             </Nav>
                             <Nav>
-                                
+                                <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
                                 <Nav.Link as={Link} to={"/newtask"}>Add Task</Nav.Link>
                                 <Nav.Link as={Link} to={"/alltasks"}>All Tasks</Nav.Link>
                                 <Dropdown id="dropdown-basic-button" title="Day">
@@ -36,7 +37,7 @@ export default class NavbarComp extends Component {
                                     <Dropdown.Item as={Link} to={"/saturday"}>Saturday</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                                <Nav.Link as={Link} to={"/"}>Logout</Nav.Link>
+                                
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

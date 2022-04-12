@@ -10,7 +10,9 @@ export default class Sunday extends Component {
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:8000/tasks/6245a8ef771854deae0a3c37/sunday`).then(res => {
+        const user = localStorage.getItem('user_id')
+        console.log(user)
+        axios.get(`http://localhost:8000/tasks/${user}/sunday`).then(res => {
             const tasks = res.data.data;
             console.log(tasks);
             this.setState({tasks: tasks});
