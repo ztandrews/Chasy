@@ -13,7 +13,9 @@ export default class NewTask extends Component {
         class_for: '',
         priority: 0,
         target_date: '',
-        notes: ''
+        notes: '',
+        fontColor: 'black',
+        alert: ''
     }
 
     handleSubmit = event => {
@@ -30,8 +32,15 @@ export default class NewTask extends Component {
             completed: false
         }).then(
             res=>{
-                console.log(res.response);
-                console.log(res.data);
+                if (res.data.status == "ok"){
+                    this.setState({fontColor:'#5aa864'})
+                    this.setState({alert: "Task successfully added!"});
+                }
+                else{
+                    this.setState({fontColor:'#dc3545'})
+                    this.setState({alert: "Failed to add task. Not enoguh free time on selected day."});
+                }
+               
             }
         )
     }
@@ -49,7 +58,7 @@ export default class NewTask extends Component {
                 <NavbarComp/>
             <div className = "container">
                 <h2>Add Task</h2>
-                <form onSubmit = {this.handleSubmit}>
+               
                     <h3>Title</h3>
                     <input type="text" name = "title" placeholder = "Title of the task" value={title} onChange={this.handleChange}></input>
                     <h3>Time Needed</h3>
@@ -97,8 +106,8 @@ export default class NewTask extends Component {
                     </input>
                     <br></br>
                     <br></br>
-                    <button type = "submit" className='btn btn-primary'> Add Task </button>
-                </form>    
+                    <button type = "submit" className='btn btn-primary'onClick={this.handleSubmit}> Add Task </button>
+                    <h5 style={{color: this.state.fontColor}}>{this.state.alert}</h5>     
             </div>
             </div>
         )

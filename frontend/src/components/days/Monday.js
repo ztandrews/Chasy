@@ -25,6 +25,7 @@ export default class Monday extends Component {
                 <NavbarComp/>
             <div className = "container">
                 <h1 className='page-header'>Tasks for Monday</h1>
+                <br></br>
                 {
                     this.state.tasks.map(task => {
                         return(

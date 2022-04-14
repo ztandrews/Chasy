@@ -33,6 +33,7 @@ function LoginForm  (){
             const status = (response.data.status);
             if (status != "ok"){
                 setAlert("Invalid username or password.")
+                setFontColor('#dc3545')
             }
             else{
             //console.log(response.data.data[0].id);

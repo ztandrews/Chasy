@@ -27,6 +27,7 @@ export default class Friday extends Component {
             
             <div className = "container">
                 <h1 className='page-header'>Tasks for Friday</h1>
+                <br></br>
                 {
                     this.state.tasks.map(task => {
                         return(
