@@ -19,14 +19,9 @@ export default class NavbarComp extends Component {
                             <Nav className="me-auto">
                             </Nav>
                             <Nav>
-                                
                                 <Nav.Link as={Link} to={"/newtask"}>Add Task</Nav.Link>
                                 <Nav.Link as={Link} to={"/alltasks"}>All Tasks</Nav.Link>
-                                <Dropdown id="dropdown-basic-button" title="Day">
-                                    <Dropdown.Toggle>
-                                        Day
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
+                                <NavDropdown id="callasible-nav-dropdown" title="Day">
                                     <Dropdown.Item as={Link} to={"/sunday"}>Sunday</Dropdown.Item>
                                     <Dropdown.Item as={Link} to={"/monday"}>Monday</Dropdown.Item>
                                     <Dropdown.Item as={Link} to={"/tuesday"}>Tuesday</Dropdown.Item>
@@ -34,8 +29,8 @@ export default class NavbarComp extends Component {
                                     <Dropdown.Item as={Link} to={"/thursday"}>Thursday</Dropdown.Item>
                                     <Dropdown.Item as={Link} to={"/friday"}>Friday</Dropdown.Item>
                                     <Dropdown.Item as={Link} to={"/saturday"}>Saturday</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                            
+                                </NavDropdown>
                                 <Nav.Link as={Link} to={"/"}>Logout</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>

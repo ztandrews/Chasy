@@ -38,7 +38,7 @@ async def get_tasks_by_id(user_id):
 async def get_tasks_by_id_day(user_id, day):
     id = user_id
     id_object = ObjectId(id)
-    tasks = tasks_serializer(tasks_collection.find({"user":id_object, "day":day}))
+    tasks = tasks_serializer(tasks_collection.find({"user":id_object, "day":day, "completed":False}))
     return {"status":"ok", "data":tasks}
 
 #Post a new task
@@ -80,3 +80,51 @@ async def login_user(username, password):
         return {"status":"invalid username or password","data":user}
     else:
         return {"status":"ok","data":user}
+
+#Update task status
+@api_router.put("/tasks/{task_id}/{status}")
+async def update_status(task_id, status):
+    id = task_id
+    id_objeect = ObjectId(id)
+    if (status=="false"):
+        var1 = False
+    else:
+        var1 = True
+    tasks_collection.update_one({"_id":id_objeect},{"$set":{"completed":var1}})
+    return {"status":"ok","data":"ok"}
+
+#Delete task
+@api_router.delete("/tasks/{task_id}")
+async def delete_task(task_id):
+    id = task_id
+    id_object = ObjectId(id)
+    tasks_collection.delete_one({"_id":id_object})
+    return {"status":"ok","data":"ok"}
+
+#Change day of task
+@api_router.put("/change/{task_id}/{new_day}")
+async def change_day(task_id, new_day):
+    tid = task_id
+    tid_object = ObjectId(tid)
+    task = tasks_serializer(tasks_collection.find({"_id":tid_object}))
+    task = task[0]
+    task_time = task["time_needed"]
+    day = task["day"]
+    uid = task["user"]
+    id_object = ObjectId(uid)
+    user = users_serializer(users_collection.find({"_id":id_object}))
+    free_time = (user[0]["free_time"])
+    if (task_time > free_time):
+        return{"status":"bad","data":"Failure. Not enough free time for this task."}
+    else:
+        time_used = 0
+        users_tasks = tasks_serializer(tasks_collection.find({"user":id_object, "day":new_day, "completed":False}))
+        for users_task in users_tasks:
+            tasks_time = (users_task["time_needed"])
+            time_used = time_used+tasks_time
+        time_used_plus_new_task = time_used+task_time
+        if (time_used_plus_new_task>free_time):
+            return{"status":"bad","data":"Failure. Not enough free time for this task"}
+        else:
+            tasks_collection.update_one({"_id":tid_object}, {"$set": {"day":new_day}})
+            return {"status":"ok", "data":"success"}
