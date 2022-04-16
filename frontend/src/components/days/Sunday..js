@@ -52,6 +52,7 @@ export default class Sunday extends Component {
         }
         const handleClose2 = () =>{
             this.setState({show2: false});
+            window.location.reload();
         }
 
         const openModal = (_id, task_title, task_class, task_time_needed, task_completed, task_priority, task_notes, task_day, task_target_date) =>{
@@ -195,6 +196,7 @@ export default class Sunday extends Component {
                             <br></br>
                             <br></br>
                             <Button className='btn btn-success' onClick={() => moveTask(this.state.currentTaskId, this.state.new_day)}>Move Task</Button>
+                            <br></br>
                             <br></br>
                             <h6 style={{color: this.state.color}}>{this.state.alert}</h6>  
                         </div>
