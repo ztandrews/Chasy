@@ -128,3 +128,8 @@ async def change_day(task_id, new_day):
         else:
             tasks_collection.update_one({"_id":tid_object}, {"$set": {"day":new_day}})
             return {"status":"ok", "data":"success"}
+
+#Clear all tasks from a user
+@api_router.delete("/tasks/{user_id}")
+async def clear_tasks(user_id):
+    return {"ok"}

@@ -29,6 +29,7 @@ code {
   width: 85%;
   max-width: 700px;
   display: flex;
+ 
 }
 
 
@@ -43,3 +44,29 @@ code {
   justify-content: center;
   text-align: center;
 }
+
+
+body {
+  background: #12c2e9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  
+  background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+}
+
+.white-body{
+  border-radius: 5px;
+  background-color: white;
+  margin-right: auto; /* 1 */
+  margin-left:  auto; /* 1 */
+  max-width: 800px; /* 2 */
+  box-shadow: .5px .5px 2px .5px black;
+}
+
+.login{
+  justify-content: center;
+/* Center horizontally*/
+  width: 50%;
+height: 60%;
+margin: 0 auto;
+text-align: center;
+}
+

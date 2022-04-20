@@ -55,6 +55,8 @@ function RegisterForm  (){
           </Navbar>
       
       <div className='container'>
+          <br></br>
+          <div className='white-body'>
           <h1 className='page-header'>Register</h1>
           <div className='login'>
               <br></br>
@@ -107,6 +109,7 @@ function RegisterForm  (){
                   <h5 style={{color: fontColor}}>{alert}</h5>
                   
 
+          </div>
           </div>
       </div>
       </div>

@@ -61,6 +61,8 @@ function LoginForm  (){
           </Navbar>
 
       <div className='container'>
+          <br></br>
+          <div className='white-body'>
           <h1 className='page-header'>Login</h1>
           <div className='login'>
               <br></br>
@@ -87,7 +89,7 @@ function LoginForm  (){
                   </p>
 
           </div>
-          
+          </div>
       </div>
       </div>
   )

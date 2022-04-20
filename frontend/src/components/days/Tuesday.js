@@ -105,6 +105,8 @@ export default class Tuesday extends Component {
             <div>
                 <NavbarComp/>
             <div className = "container">
+                <br></br>
+                <div className='white-body'>
                 <h1 className='page-header'>Tasks for Tuesday</h1>
                 <Modal show={this.state.show} onHide={handleClose}>
                     <Modal.Header closeButton>
@@ -222,7 +224,7 @@ export default class Tuesday extends Component {
                         );
                     })
                 }
-              
+              </div>
             </div>
             </div>
         )

@@ -20,7 +20,14 @@ export default class NewTask extends Component {
 
     handleSubmit = event => {
         const current_user = localStorage.getItem('user_id')
-        axios.post('http://127.0.0.1:8000/tasks',{
+        if (this.state.day === '' || this.state.time_needed === ''
+        || this.state.class_for === '' || this.state.target_date === '' ||
+        this.state.notes === '' || this.state.title === ''){
+            this.setState({fontColor: '#dc3545'})
+            this.setState({alert: "Failed to add task. Please fill out every field."})
+        }
+        else{
+            axios.post('http://127.0.0.1:8000/tasks',{
             user: current_user,
             title: this.state.title,
             day: this.state.day,
@@ -43,6 +50,7 @@ export default class NewTask extends Component {
                
             }
         )
+        }
     }
 
     handleChange = (e) => {
@@ -57,8 +65,10 @@ export default class NewTask extends Component {
             <div>
                 <NavbarComp/>
             <div className = "container">
-                <h2>Add Task</h2>
-               
+                <br></br>
+                <div className='white-body'>
+                    <div className='login'>
+                <h1 className='page-header'>Add Task</h1>
                     <h3>Title</h3>
                     <input type="text" name = "title" placeholder = "Title of the task" value={title} onChange={this.handleChange}></input>
                     <h3>Time Needed</h3>
@@ -67,7 +77,7 @@ export default class NewTask extends Component {
                     <h3>Class For</h3>
                     <input type = "text" name="class_for" placeholder = "Class the task is for" value={class_for} onChange={this.handleChange}>
                     </input>
-                    <h3>Priority Level (0 being low and 10 being highest)</h3>
+                    <h3>Priority Level</h3>
                     <select name = "priority" value={priority} onChange={this.handleChange}>
                         <option value={0}>0</option>
                         <option value={1}>1</option>
@@ -91,7 +101,7 @@ export default class NewTask extends Component {
                         <option value={"friday"}>Friday</option>
                         <option value={"saturday"}>Saturday</option>
                     </select>
-                    <h3>Target Day (Day to have task completed by)</h3>
+                    <h3>Target Day</h3>
                     <select name = "target_date" value={target_date} onChange={this.handleChange}>
                         <option value={"sunday"}>Sunday</option>
                         <option value={"monday"}>Monday</option>
@@ -107,7 +117,12 @@ export default class NewTask extends Component {
                     <br></br>
                     <br></br>
                     <button type = "submit" className='btn btn-primary'onClick={this.handleSubmit}> Add Task </button>
+                    <br></br>
+                    <br></br>
                     <h5 style={{color: this.state.fontColor}}>{this.state.alert}</h5>     
+                    <br></br>
+           </div>
+           </div>
             </div>
             </div>
         )
