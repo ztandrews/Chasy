@@ -19,8 +19,10 @@ export default class NavbarComp extends Component {
                             <Nav className="me-auto">
                             </Nav>
                             <Nav>
+                                <Nav.Link as={Link} to={"/today"}>Today</Nav.Link>
                                 <Nav.Link as={Link} to={"/newtask"}>Add Task</Nav.Link>
                                 <Nav.Link as={Link} to={"/alltasks"}>All Tasks</Nav.Link>
+                                {/* A JSX comment
                                 <NavDropdown id="callasible-nav-dropdown" title="Day">
                                     <Dropdown.Item as={Link} to={"/sunday"}>Sunday</Dropdown.Item>
                                     <Dropdown.Item as={Link} to={"/monday"}>Monday</Dropdown.Item>
@@ -31,6 +33,9 @@ export default class NavbarComp extends Component {
                                     <Dropdown.Item as={Link} to={"/saturday"}>Saturday</Dropdown.Item>
                             
                                 </NavDropdown>
+                                */}
+                                <Nav.Link as={Link} to={"/account"}>My Account</Nav.Link>
+                                <Nav.Link as={Link} to={"/about"}>About</Nav.Link>
                                 <Nav.Link as={Link} to={"/"}>Logout</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>

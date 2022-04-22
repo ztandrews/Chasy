@@ -26,7 +26,6 @@ def task_serializer(task) -> dict:
         "priority":task["priority"],
         "target_date":task["target_date"],
         "notes":task["notes"],
-        "day":task["day"]
     }
 
 def tasks_serializer(tasks) -> list:

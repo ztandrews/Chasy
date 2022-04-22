@@ -34,5 +34,4 @@ class Task(BaseModel):
     priority: int
     target_date: str
     notes: str
-    day: str
     title: str

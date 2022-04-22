@@ -21,6 +21,9 @@ import Saturday from './components/days/Saturday';
 import Sunday from './components/days/Sunday.';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import Account from './components/Account';
+import About from './components/About';
+import Today from './components/days/Today';
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
         <Route path = "/saturday" element={<Saturday/>}></Route>
         <Route path = "/sunday" element={<Sunday/>}></Route>
         <Route path = "/register" element={<RegisterForm/>}></Route>
+        <Route path = "/about" element={<About/>}></Route>
+        <Route path = "/account" element={<Account/>}></Route>
+        <Route path = "/today" element={<Today/>}></Route>
       </Routes>
     </div>
     </Router>

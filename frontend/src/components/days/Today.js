@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { useParams } from 'react-router-dom'
 import { Modal, Button, Card, CardGroup, ButtonToolbar } from 'react-bootstrap';
 import axios from 'axios';
-import NavbarComp from './NavbarComp';
+import NavbarComp from '../NavbarComp';
 import * as Icon from 'react-bootstrap-icons';
 import {SiGoogleclassroom} from "react-icons/si";
 import {FiTarget} from 'react-icons/fi';
 import { MdPriorityHigh } from "react-icons/md";
 import {CgNotes} from "react-icons/cg";
 
-export default class AllTasks extends Component {
+export default class Today extends Component {
 
 
     state={
@@ -29,14 +29,19 @@ export default class AllTasks extends Component {
         alert: '',
         new_day: '',
         color: 'black',
-        showDelete: false,
+        today: '',
         noTasksMessage: ''
     }
 
     componentDidMount(){
         const user = localStorage.getItem('user_id')
+        const d = new Date();
+        let day = d.getDay();
+        const weekdays = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday']
+        let currentDay = weekdays[day];
+        this.setState({today: currentDay});
         console.log(user)
-        axios.get(`http://localhost:8000/tasks/${user}`).then(res => {
+        axios.get(`http://localhost:8000/plan/${user}/${currentDay}`).then(res => {
             const tasks = res.data.data;
             console.log(tasks);
             this.setState({tasks: tasks});
@@ -44,7 +49,7 @@ export default class AllTasks extends Component {
                 this.setState({noTasksMessage:"All caught up! You have no tasks to complete for the week!"})
             }
         })
-        
+
     }
     handleChange = (e) => {
         this.setState({[e.target.name] : e.target.value})
@@ -59,10 +64,6 @@ export default class AllTasks extends Component {
         const handleClose2 = () =>{
             this.setState({show2: false});
             window.location.reload();
-        }
-
-        const handleClose3 = () =>{
-            this.setState({showDelete: false});
         }
 
         const openModal = (_id, task_title, task_class, task_time_needed, task_completed, task_priority, task_notes, task_day, task_target_date) =>{
@@ -93,7 +94,7 @@ export default class AllTasks extends Component {
             })
         }
 
-       const moveTask = (_id, newDay) => {
+        const moveTask = (_id, newDay) => {
             axios.put(`http://127.0.0.1:8000/tasks/move/${_id}/${newDay}`).then(res => {
                 console.log(res.data.data);
                 if (res.data.status === "ok"){
@@ -107,30 +108,9 @@ export default class AllTasks extends Component {
             })
         } 
 
-        const deleteAllTasks = () => {
-            const user = localStorage.getItem('user_id')
-            axios.delete(`http://127.0.0.1:8000/tasks/user/${user}`).then(res => {
-                this.setState({showDelete: false});
-                window.location.reload();
-            })
-
-        }
-
-        const deleteCompletedTasks = () =>{
-            const user = localStorage.getItem('user_id')
-            axios.delete(`http://127.0.0.1:8000/tasks/user/${user}/completed`).then(res => {
-                this.setState({showDelete: false});
-                window.location.reload();
-            })
-        }
-
         const openChangeModal = () =>{
             this.setState({show: false});
             this.setState({show2: true});
-        }
-
-        const openDeleteModal = () => {
-            this.setState({showDelete: true});
         }
         return (
             <div>
@@ -138,11 +118,10 @@ export default class AllTasks extends Component {
             <div className = "container">
                 <br></br>
                 <div className='white-body'>
-                <h1 className='page-header'>All Tasks</h1>
+                <h1 className='page-header'>Tasks for Today</h1>
                 <center>
-                <button className='btn btn-danger'onClick ={() => openDeleteModal()}>Clear Tasks</button>
+                    <h6>{this.state.today}</h6>
                 </center>
-                <br></br>
                 <Modal show={this.state.show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>
@@ -241,25 +220,6 @@ export default class AllTasks extends Component {
                         </div>
                     </Modal.Body>
                 </Modal>
-                <Modal show={this.state.showDelete} onHide={handleClose3}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            Clear Tasks
-                        </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div>
-                                <center>
-                                    <h6>Select Tasks to Clear</h6>
-                                <br></br>
-                                <button className='btn btn-danger' onClick={() => deleteAllTasks()}>Clear All Tasks</button>
-                                <br></br>
-                                <br></br>
-                                <button className='btn btn-danger' onClick={() => deleteCompletedTasks()}>Clear Completed Tasks</button>
-                                </center>
-                            </div>
-                        </Modal.Body>
-                </Modal>
                 {
                     this.state.tasks.map(task => {
                         return(
@@ -270,7 +230,6 @@ export default class AllTasks extends Component {
                                 <h6>{task.class_for}</h6>
                                 <h6>{task.time_needed} Hours</h6>
                                 <h6>Days Until Target: {task.priority}</h6>
-                                <h6>Completed? {task.completed.toString()}</h6>
                                 </div>
                                 <Button className='icon' variant="btn bg-transparent" onClick={() => openModal(task.id, task.title, task.class_for, task.time_needed, task.completed.toString(), task.priority, task.notes, task.day, task.target_date)}>
                                     <Icon.Eye size="3x"/>
