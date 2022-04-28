@@ -110,7 +110,6 @@ async def plan_day(user_id, day):
             days_away = 7+days_away
         else:
             days_away=days_away
-        print(days_away)
         days_away = int(days_away)
         tasks_collection.update_one({"_id":task_id},{"$set":{"priority":days_away}})
     tasks = tasks_serializer(tasks_collection.find({"user":id_object,"completed":False}))
@@ -125,7 +124,7 @@ async def plan_day(user_id, day):
     todays_tasks = []
     for task in tasks:
         difference = free_time - task["time_needed"]
-        if difference > 0:
+        if difference >= 0:
             todays_tasks.append(task)
             print(task["time_needed"])
             print('added')
